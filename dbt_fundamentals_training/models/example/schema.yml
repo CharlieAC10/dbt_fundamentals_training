@@ -3,9 +3,10 @@ version: 2
 
 models:
   - name: dim_customers
-    description: "Customers info"
+    description: Customers info
     columns:
       - name: customer_id
+        description: primary key of the model
         tests:
           - unique
           - not_null
