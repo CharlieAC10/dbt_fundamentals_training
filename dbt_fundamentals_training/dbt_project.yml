@@ -35,5 +35,4 @@ models:
     dbt_fundamentals_training: 
       +materialized: table 
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+
