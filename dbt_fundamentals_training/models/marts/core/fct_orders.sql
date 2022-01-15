@@ -10,14 +10,11 @@ orders_payments as (
 
     select
         order_id,
-        customer_id,
-        sum(amount) as amount
+        sum( case when status = 'success' then amount end) as amount
 
-    from orders
+    from payments 
 
-    left join payments using (order_id)
-
-    group by 1, 2
+    group by 1
 
 )
 
