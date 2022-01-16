@@ -16,6 +16,19 @@ orders_payments as (
 
     group by 1
 
+),
+
+final as (
+    
+    select 
+        orders.order_id,
+        orders.customer_id,
+        orders.order_date,
+        coalesce(orders_payments.amount,0) as amount
+
+    from orders
+
+    left join orders_payments using (order_id)
 )
 
-select * from orders_payments
+select * from final
