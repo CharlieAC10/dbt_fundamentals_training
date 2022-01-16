@@ -8,7 +8,7 @@ with payments as (
         amount,
         created
 
-    from dbt_fundamentals_ca.stripe.payment
+    from {{ source ('stripe','payment')}}
 
 )
 
