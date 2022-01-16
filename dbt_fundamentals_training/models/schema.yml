@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customers info
+    columns:
+      - name: customer_id
+        description: primary key of the model
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_customers
+    description: one unique customer per row
+    columns:
+      - name: customer_id
+        description: primary key for stg_customers
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id

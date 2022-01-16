@@ -32,7 +32,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  dbt_fundamentals_training:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    dbt_fundamentals_training:
+      marts:
+        core: 
+          +materialized: table
+      staging:
+        +materialized: view 
+  
+# Config indicated by + and applies to all files under models/example/
+
